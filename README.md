@@ -1,6 +1,6 @@
 ![StackUp Banner](https://tinkerhub.frappe.cloud/files/stackup%20banner.jpeg)
 # Project Name
-TaskGuild
+TaskMasterPro
 ## Team members
 1. [ASHISH B](https://github.com/ASHISH-28-02)
 2. [ABHISHEK ARUNKUMAR](https://github.com/abhishekarun2901)
