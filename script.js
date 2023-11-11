@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     const todos = [];
-
     const todoList = document.getElementById('todos');
     const todoInput = document.getElementById('todoInput');
+    const todoForm = document.querySelector('form');
 
     function renderTodos() {
         todoList.innerHTML = '';
@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const li = document.createElement('li');
             li.innerHTML = `
                 <span>${todo.text}</span>
-                <button onclick="updateTodo(${todo.id})">Update</button>
-                <button onclick="deleteTodo(${todo.id})">Delete</button>
+                <button data-id="${todo.id}" class="update-btn">Update</button>
+                <button data-id="${todo.id}" class="delete-btn">Delete</button>
             `;
             todoList.appendChild(li);
         });
@@ -29,21 +29,40 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function updateTodo(todoId) {
-        // Add logic to update the todo based on its ID
-        console.log(`Update todo with ID ${todoId}`);
+        const updatedText = prompt('Update task:', '');
+        if (updatedText !== null) {
+            const updatedTodos = todos.map(todo =>
+                todo.id === todoId ? { ...todo, text: updatedText } : todo
+            );
+            updateTodos(updatedTodos);
+        }
     }
 
     function deleteTodo(todoId) {
-        // Add logic to delete the todo based on its ID
         const updatedTodos = todos.filter(todo => todo.id !== todoId);
-        todos.length = 0; // Clear the existing array
-        Array.prototype.push.apply(todos, updatedTodos); // Push updated todos back
+        updateTodos(updatedTodos);
+    }
+
+    function updateTodos(updatedTodos) {
+        todos.length = 0;
+        Array.prototype.push.apply(todos, updatedTodos);
         renderTodos();
     }
 
-    document.querySelector('form').addEventListener('submit', function (event) {
+    todoForm.addEventListener('submit', function (event) {
         event.preventDefault();
         addTodo();
+    });
+
+    todoList.addEventListener('click', function (event) {
+        const target = event.target;
+        const todoId = parseInt(target.getAttribute('data-id'));
+
+        if (target.classList.contains('update-btn')) {
+            updateTodo(todoId);
+        } else if (target.classList.contains('delete-btn')) {
+            deleteTodo(todoId);
+        }
     });
 
     renderTodos();
