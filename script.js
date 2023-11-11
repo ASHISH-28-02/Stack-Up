@@ -31,22 +31,20 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateTodo(todoId) {
         const updatedText = prompt('Update task:', '');
         if (updatedText !== null) {
-            const updatedTodos = todos.map(todo =>
-                todo.id === todoId ? { ...todo, text: updatedText } : todo
-            );
-            updateTodos(updatedTodos);
+            const todoIndex = todos.findIndex(todo => todo.id === todoId);
+            if (todoIndex !== -1) {
+                todos[todoIndex].text = updatedText;
+                renderTodos();
+            }
         }
     }
 
     function deleteTodo(todoId) {
-        const updatedTodos = todos.filter(todo => todo.id !== todoId);
-        updateTodos(updatedTodos);
-    }
-
-    function updateTodos(updatedTodos) {
-        todos.length = 0;
-        Array.prototype.push.apply(todos, updatedTodos);
-        renderTodos();
+        const todoIndex = todos.findIndex(todo => todo.id === todoId);
+        if (todoIndex !== -1) {
+            todos.splice(todoIndex, 1);
+            renderTodos();
+        }
     }
 
     todoForm.addEventListener('submit', function (event) {
@@ -62,6 +60,12 @@ document.addEventListener('DOMContentLoaded', function () {
             updateTodo(todoId);
         } else if (target.classList.contains('delete-btn')) {
             deleteTodo(todoId);
+        }
+    });
+
+    renderTodos();
+});
+
         }
     });
 
