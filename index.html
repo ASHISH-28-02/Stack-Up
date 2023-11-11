@@ -3,31 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TaskMasterPro - Task Management App</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Simple To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #tasks {
+            list-style-type: none;
+            padding: 0;
+        }
+        .task {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #ccc;
+            margin-bottom: 5px;
+            padding: 8px;
+        }
+        .task button {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>TaskMasterPro</h1>
-    </header>
+    <h1>My To-Do List</h1>
+    <ul id="tasks"></ul>
+    <div>
+        <input type="text" id="taskInput" placeholder="Add a new task">
+        <button onclick="addTask()">Add Task</button>
+    </div>
 
-    <main>
-        <section id="todoList">
-            <h2>Your To-Do List</h2>
-            <ul id="todos">
-                <!-- Todo items will be dynamically added here -->
-            </ul>
-        </section>
+    <script>
+        const tasksList = document.getElementById('tasks');
+        const taskInput = document.getElementById('taskInput');
 
-        <section id="addTodoForm">
-            <h2>Add New Todo</h2>
-            <form>
-                <input type="text" id="todoInput" placeholder="Enter your task" required>
-                <button type="submit">Add</button>
-            </form>
-        </section>
-    </main>
+        function addTask() {
+            const taskText = taskInput.value.trim();
 
-    <script src="script.js"></script>
+            if (taskText !== '') {
+                const taskItem = document.createElement('li');
+                taskItem.className = 'task';
+                taskItem.innerHTML = `
+                    <span>${taskText}</span>
+                    <button onclick="deleteTask(this)">Delete</button>
+                    <button onclick="editTask(this)">Edit</button>
+                `;
+                tasksList.appendChild(taskItem);
+                taskInput.value = '';
+            }
+        }
+
+        function deleteTask(button) {
+            const taskItem = button.parentElement;
+            tasksList.removeChild(taskItem);
+        }
+
+        function editTask(button) {
+            const taskItem = button.parentElement;
+            const taskText = taskItem.querySelector('span').innerText;
+            const newTaskText = prompt('Edit task:', taskText);
+
+            if (newTaskText !== null) {
+                taskItem.querySelector('span').innerText = newTaskText;
+            }
+        }
+    </script>
 </body>
 </html>
+
