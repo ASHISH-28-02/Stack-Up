@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Authentication Example</title>
+    <!-- Add Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.3.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.3.1/firebase-firestore.js"></script>
+</head>
+<body>
+    <h1>Firebase Authentication Example</h1>
+
+    <!-- Firebase Configuration -->
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyB6VjqPB90DVu89fhvwb0mtBgCOw727p0k",
+  authDomain: "to-do-list-374d4.firebaseapp.com",
+  projectId: "to-do-list-374d4",
+  storageBucket: "to-do-list-374d4.appspot.com",
+  messagingSenderId: "841150087665",
+  appId: "1:841150087665:web:16f6b394bd32b2fff90450",
+  measurementId: "G-6R3NHCGX99"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <!-- Your Authentication Form -->
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Enter your email">
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter your password">
+
+        <button onclick="register()">Register</button>
+        <button onclick="login()">Login</button>
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html>
