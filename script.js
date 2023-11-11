@@ -31,9 +31,9 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateTodo(todoId) {
         const updatedText = prompt('Update task:', '');
         if (updatedText !== null) {
-            const todoIndex = todos.findIndex(todo => todo.id === todoId);
-            if (todoIndex !== -1) {
-                todos[todoIndex].text = updatedText;
+            const todo = todos.find(todo => todo.id === todoId);
+            if (todo) {
+                todo.text = updatedText;
                 renderTodos();
             }
         }
@@ -66,8 +66,3 @@ document.addEventListener('DOMContentLoaded', function () {
     renderTodos();
 });
 
-        }
-    });
-
-    renderTodos();
-});
