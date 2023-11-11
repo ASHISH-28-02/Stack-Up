@@ -3,32 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Firebase Authentication Example</title>
+    <title>Authentication Page</title>
     <!-- Add Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.3.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.3.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.3.1/firebase-firestore.js"></script>
-</head>
-<body>
-    <h1>Firebase Authentication Example</h1>
 
     <!-- Firebase Configuration -->
     <script>
         const firebaseConfig = {
-            apiKey: "AIzaSyB6VjqPB90DVu89fhvwb0mtBgCOw727p0k",
-  authDomain: "to-do-list-374d4.firebaseapp.com",
-  projectId: "to-do-list-374d4",
-  storageBucket: "to-do-list-374d4.appspot.com",
-  messagingSenderId: "841150087665",
-  appId: "1:841150087665:web:16f6b394bd32b2fff90450",
-  measurementId: "G-6R3NHCGX99"
+            apiKey: "your-api-key",
+            authDomain: "your-auth-domain",
+            projectId: "your-project-id",
+            storageBucket: "your-storage-bucket",
+            messagingSenderId: "your-messaging-sender-id",
+            appId: "your-app-id"
         };
 
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
     </script>
+</head>
+<body>
+    <h1>Authentication Page</h1>
 
-    <!-- Your Authentication Form -->
+    <!-- Include your authentication form or UI elements -->
     <div>
         <label for="email">Email:</label>
         <input type="email" id="email" placeholder="Enter your email">
@@ -36,11 +35,10 @@
         <label for="password">Password:</label>
         <input type="password" id="password" placeholder="Enter your password">
 
-        <button onclick="register()">Register</button>
-        <button onclick="login()">Login</button>
-        <button onclick="logout()">Logout</button>
+        <button onclick="authenticate()">Authenticate</button>
     </div>
 
-    <script src="auth.js"></script>
+    <!-- Include the authentication script -->
+    <script src="authenticate.js"></script>
 </body>
 </html>

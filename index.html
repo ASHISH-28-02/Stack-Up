@@ -3,7 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple To-Do List</title>
+    <title>Your To-Do List</title>
+    <!-- Add Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.3.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.3.1/firebase-firestore.js"></script>
+
+    <!-- Firebase Configuration -->
+    <script>
+        const firebaseConfig = {
+            apiKey: "your-api-key",
+            authDomain: "your-auth-domain",
+            projectId: "your-project-id",
+            storageBucket: "your-storage-bucket",
+            messagingSenderId: "your-messaging-sender-id",
+            appId: "your-app-id"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <!-- Include the authentication script -->
+    <script src="authenticate.js"></script>
+
+    <!-- To-Do List Styles -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -28,15 +52,21 @@
     </style>
 </head>
 <body>
-    <h1>My To-Do List</h1>
-    <ul id="tasks"></ul>
+    <h1>Your To-Do List</h1>
+
+    <!-- Authentication Section -->
+    <div id="authenticationSection"></div>
+
+    <!-- To-Do List Section -->
     <div>
         <input type="text" id="taskInput" placeholder="Add a new task">
         <button onclick="addTask()">Add Task</button>
+        <ul id="tasks"></ul>
     </div>
 
+    <!-- To-Do List Script -->
     <script>
-
+        // Your To-Do list script goes here
         const tasksList = document.getElementById('tasks');
         const taskInput = document.getElementById('taskInput');
 
@@ -73,4 +103,3 @@
     </script>
 </body>
 </html>
-
